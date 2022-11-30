@@ -5,34 +5,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.Generated;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Generated;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 public class Book {
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  private Long id;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private Long id;
-    @Column(length = 50)
-    private String title;
-    @Column(length = 20)
-    private String author;
+  @Column(length = 50)
+  private String title;
 
-    @Builder
-    public Book(Long id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-    }
+  @Column(length = 20)
+  private String author;
 
-    
+  @Builder
+  public Book(Long id, String title, String author) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+  }
 }
